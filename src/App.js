@@ -8,36 +8,45 @@ import Clicker from './pages/Clicker'
 import StopWatch from './pages/StopWatch'
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
-
-const App = () => (
-	<>
-		<NavBar />
-		<div style={{ padding: '70px' }}>
-			<Switch>
-				<Route exact path='/'>
-					<MainPage />
-				</Route>
-				<Route path='/aboutme'>
-					<AboutMe />
-				</Route>
-				<Route path='/charlist'>
-					<CharList />
-				</Route>
-				<Route path='/clicker'>
-					<Clicker />
-				</Route>
-				<Route path='/loginpage'>
-					<LoginPage />
-				</Route>
-				<Route path='/stopwatch'>
-					<StopWatch />
-				</Route>
-				<Route>
-					<ErrorPage />
-				</Route>
-			</Switch>
-		</div>
-	</>
-)
-
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import './App.css'
+const App = () => {
+	const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#fefefe',
+			},
+		},
+	})
+	return (
+		<ThemeProvider theme={theme}>
+			<NavBar />
+			<div style={{ paddingTop: '6vh' }}>
+				<Switch>
+					<Route exact path='/'>
+						<MainPage />
+					</Route>
+					<Route path='/aboutme'>
+						<AboutMe />
+					</Route>
+					<Route path='/charlist'>
+						<CharList />
+					</Route>
+					<Route path='/clicker'>
+						<Clicker />
+					</Route>
+					<Route path='/loginpage'>
+						<LoginPage />
+					</Route>
+					<Route path='/stopwatch'>
+						<StopWatch />
+					</Route>
+					<Route>
+						<ErrorPage />
+					</Route>
+				</Switch>
+			</div>
+		</ThemeProvider>
+	)
+}
 export default App
