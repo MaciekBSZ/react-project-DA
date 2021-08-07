@@ -12,29 +12,31 @@ import ErrorPage from './pages/ErrorPage'
 const App = () => (
 	<>
 		<NavBar />
-		<Switch>
-			<Route exact path='/'>
-				<MainPage />
-			</Route>
-			<Route path='/aboutme'>
-				<AboutMe />
-			</Route>
-			<Route path='/charlist'>
-				<CharList />
-			</Route>
-			<Route path='/clicker'>
-				<Clicker />
-			</Route>
-			<Route path='/loginpage'>
-				<LoginPage />
-			</Route>
-			<Route path='/stopwatch'>
-				<StopWatch />
-			</Route>
-			<Route>
-				<ErrorPage />
-			</Route>
-		</Switch>
+		<div style={{ padding: '70px' }}>
+			<Switch>
+				<Route exact path='/'>
+					<MainPage />
+				</Route>
+				<Route path='/aboutme'>
+					<AboutMe />
+				</Route>
+				<Route path='/charlist'>
+					<CharList />
+				</Route>
+				<Route path='/clicker'>
+					<Clicker />
+				</Route>
+				<Route path='/loginpage'>
+					<LoginPage />
+				</Route>
+				<Route path='/stopwatch'>
+					<StopWatch />
+				</Route>
+				<Route>
+					<ErrorPage />
+				</Route>
+			</Switch>
+		</div>
 	</>
 )
 
