@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import NavBar from './components/NavBar'
+import { Switch, Route } from 'react-router-dom'
+import MainPage from './pages/MainPage'
+import AboutMe from './pages/AboutMe'
+import CharList from './pages/CharList'
+import Clicker from './pages/Clicker'
+import StopWatch from './pages/StopWatch'
+import LoginPage from './pages/LoginPage'
+import ErrorPage from './pages/ErrorPage'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+	<>
+		<NavBar />
+		<Switch>
+			<Route exact path='/'>
+				<MainPage />
+			</Route>
+			<Route path='/aboutme'>
+				<AboutMe />
+			</Route>
+			<Route path='/charlist'>
+				<CharList />
+			</Route>
+			<Route path='/clicker'>
+				<Clicker />
+			</Route>
+			<Route path='/loginpage'>
+				<LoginPage />
+			</Route>
+			<Route path='/stopwatch'>
+				<StopWatch />
+			</Route>
+			<Route>
+				<ErrorPage />
+			</Route>
+		</Switch>
+	</>
+)
 
-export default App;
+export default App
