@@ -20,7 +20,7 @@ const NavBar = () => {
 			height='5vh'
 			border='1px solid black'
 			borderRadius='12px'>
-			<Box display='flex' alignItems='center' width='10%' a justifyContent='space-between'>
+			<Box display='flex' alignItems='center' width='10%' justifyContent='space-between'>
 				<SentimentVerySatisfied />
 				<Typography>No siema!</Typography>
 			</Box>

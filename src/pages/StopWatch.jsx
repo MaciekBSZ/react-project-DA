@@ -1,28 +1,36 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { minus, add, zero, start } from '../redux/ducks/stopwatchCounter'
+import { minus, plus, addstart, minusstart, zero, incrementplusaddstart } from '../redux/ducks/stopwatchCounter'
+import { useEffect, useState } from 'react'
 const StopWatch = () => {
 	const count = useSelector(state => state.stopwatchCounter.count)
+	const startCount = useSelector(state => state.stopwatchCounter.start)
+	const [timeOn, setTimeOn] = useState(false)
 	const dispatch = useDispatch()
-	const handleIncrement = () => {
-		dispatch(add())
-	}
-	const handleDecrement = () => {
-		dispatch(minus())
-	}
-	const handleReset = () => {
-		dispatch(zero())
-	}
-	const handleStart = () => {
-		dispatch(start())
-	}
+
+	useEffect(() => {
+		let interval = { startCount }
+		if (timeOn) {
+			interval = setInterval(() => {
+				dispatch(incrementplusaddstart())
+			}, 1000)
+		} else {
+			clearInterval(interval)
+		}
+		return () => clearInterval(interval)
+	}, [timeOn])
+
 	return (
 		<>
-			<h2>Licznik: {count}</h2>
-			<button onClick={handleDecrement}>Odejmij 1</button>
-			<button onClick={handleReset}>Resetuj</button>
-			<button onClick={handleIncrement}>Dodaj 1</button>
-			<button onClick={handleStart}>Dodaj 10</button>
+			<h2>Zwiększ licznik o: {startCount}</h2>
+			<h2>Stoper: {count}</h2>
+			<button onClick={() => dispatch(minus())}>Odejmij 1</button>
+			<button onClick={() => dispatch(zero())}>Resetuj</button>
+			<button onClick={() => dispatch(plus())}>Dodaj 1</button>
+			<button onClick={() => dispatch(addstart())}>Dodaj do licznika {startCount}</button>
+			<button onClick={() => dispatch(minusstart())}>Odejmij do licznika </button>
+			<button onClick={() => setTimeOn(true)}> Start</button>
+			<button onClick={() => setTimeOn(false)}> Stop</button>
 		</>
 	)
 }
