@@ -7,7 +7,13 @@ const StopWatch = () => {
 	const startCount = useSelector(state => state.stopwatchCounter.start)
 	const [timeOn, setTimeOn] = useState(false)
 	const dispatch = useDispatch()
-
+	const handleTime = () => {
+		if (!timeOn) {
+			setTimeOn(true)
+		} else {
+			setTimeOn(false)
+		}
+	}
 	useEffect(() => {
 		let interval = { startCount }
 		if (timeOn) {
@@ -29,8 +35,7 @@ const StopWatch = () => {
 			<button onClick={() => dispatch(plus())}>Dodaj 1</button>
 			<button onClick={() => dispatch(addstart())}>Dodaj do licznika {startCount}</button>
 			<button onClick={() => dispatch(minusstart())}>Odejmij do licznika </button>
-			<button onClick={() => setTimeOn(true)}> Start</button>
-			<button onClick={() => setTimeOn(false)}> Stop</button>
+			<button onClick={handleTime}>{timeOn === false ? <p>Start</p> : <p>Stop</p>}</button>
 		</>
 	)
 }

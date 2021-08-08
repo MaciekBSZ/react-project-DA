@@ -27,7 +27,7 @@ export const zero = () => ({
 
 const initialState = {
 	count: 0,
-	start: 0,
+	start: 1,
 }
 
 const stopwatchCounter = (state = initialState, action) => {

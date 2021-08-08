@@ -8,21 +8,12 @@ const Title = styled.h2`
 const Clicker = () => {
 	const count = useSelector(state => state.counter.count)
 	const dispatch = useDispatch()
-	const handleIncrement = () => {
-		dispatch(increment())
-	}
-	const handleDecrement = () => {
-		dispatch(decrement())
-	}
-	const handleReset = () => {
-		dispatch(reset())
-	}
 	return (
 		<>
 			{count % 5 === 0 && count !== 0 ? <Title modulo> {count}</Title> : <h2> {count} </h2>}
-			<button onClick={handleDecrement}>Odejmij 1</button>
-			<button onClick={handleReset}>Resetuj</button>
-			<button onClick={handleIncrement}>Dodaj 1</button>
+			<button onClick={() => dispatch(decrement())}>Odejmij 1</button>
+			<button onClick={() => dispatch(reset())}>Resetuj</button>
+			<button onClick={() => dispatch(increment())}>Dodaj 1</button>
 		</>
 	)
 }
