@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import './App.css'
+import RegisterPage from './pages/RegisterPage'
 const App = () => {
 	const theme = createTheme({
 		palette: {
@@ -40,6 +41,9 @@ const App = () => {
 					</Route>
 					<Route path='/stopwatch'>
 						<StopWatch />
+					</Route>
+					<Route path='/registerpage'>
+						<RegisterPage />
 					</Route>
 					<Route>
 						<ErrorPage />

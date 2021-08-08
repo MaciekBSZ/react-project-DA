@@ -31,6 +31,7 @@ const NavBar = () => {
 				<Button onClick={() => history.push('/clicker')}>Licznik</Button>
 				<Button onClick={() => history.push('/loginpage')}>Panel logowania</Button>
 				<Button onClick={() => history.push('/stopwatch')}>Stoper</Button>
+				<Button onClick={() => history.push('/registerpage')}>Strona rejestracji</Button>
 			</ButtonGroup>
 		</Box>
 	)
