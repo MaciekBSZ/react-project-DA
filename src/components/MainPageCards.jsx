@@ -13,6 +13,10 @@ const useStyles = makeStyles({
 		width: 100,
 		height: 100,
 	},
+	gridContainer: {
+		margin: 'auto',
+		width: '90%',
+	},
 })
 
 const MainPageCards = () => {
@@ -31,7 +35,7 @@ const MainPageCards = () => {
 		</Grid>
 	))
 	return (
-		<Grid container witdh='100%' spacing={3}>
+		<Grid container spacing={3} className={classes.gridContainer}>
 			{navCards}
 		</Grid>
 	)
