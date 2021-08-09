@@ -1,11 +1,20 @@
 import { Box, Typography } from '@material-ui/core'
+import styled from 'styled-components'
 import React from 'react'
+import ErrorPageImg from '../img/ErrorPageImg.png'
 const ErrorPage = () => {
+	const Photo = styled.div`
+		width: 300px;
+		height: 300px;
+		background-image: url(${ErrorPageImg});
+		background-size: cover;
+		background-repeat: no-repeat;
+	`
+
 	return (
 		<Box height='94vh' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
-			<Typography variant='h1' align='center' gutterBottom>
-				Łobaben! Coś się zepsuło!
-			</Typography>
+			<Typography variant='h1'>Łobaben! Coś się zepsuło!</Typography>
+			<Photo></Photo>
 		</Box>
 	)
 }

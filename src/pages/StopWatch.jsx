@@ -24,7 +24,7 @@ const StopWatch = () => {
 			clearInterval(interval)
 		}
 		return () => clearInterval(interval)
-	}, [timeOn])
+	}, [timeOn, startCount, dispatch])
 
 	return (
 		<>

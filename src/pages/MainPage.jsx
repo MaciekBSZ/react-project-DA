@@ -19,7 +19,7 @@ const MainPage = () => {
 	const classes = useStyles()
 	return (
 		<>
-			<Box height='70vh' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
+			<Box height='30vh' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
 				<Typography variant='h1' align='center' gutterBottom>
 					Moja strona
 				</Typography>
