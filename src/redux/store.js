@@ -1,13 +1,7 @@
-import { combineReducers, createStore } from 'redux'
-import counter from './ducks/counter'
-import stopwatchCounter from './ducks/stopwatchCounter'
-
-const reducer = combineReducers({
-	counter,
-	stopwatchCounter,
-})
+import { createStore } from 'redux'
+// import counter from './ducks/counter'
+import reducer from './toolkit/reducer'
+// import stopwatchCounter from './ducks/stopwatchCounter'
 
 const store = createStore(reducer)
-console.log(store)
-
 export default store

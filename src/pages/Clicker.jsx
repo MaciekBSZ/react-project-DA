@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { decrement, increment, reset } from '../redux/ducks/counter'
+import { decrement, increment, reset } from '../redux/toolkit/reducer'
 import styled from 'styled-components'
 const Title = styled.h2`
 	color: ${props => (props.modulo ? 'green' : null)};
