@@ -27,22 +27,20 @@ const MainPageCard = ({ icon, title, text, path }) => {
 	const history = useHistory()
 	const classes = useStyles()
 	return (
-		<>
-			<Card className={classes.root} onClick={() => history.push(path)}>
-				<CardActionArea>
-					<CardMedia className={classes.media} />
-					{icon}
-					<CardContent>
-						<Typography gutterBottom variant='h5' component='h2'>
-							{title}
-						</Typography>
-						<Typography variant='body2' component='p'>
-							{text}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
-			</Card>
-		</>
+		<Card className={classes.root} onClick={() => history.push(path)}>
+			<CardActionArea>
+				<CardMedia className={classes.media} />
+				{icon}
+				<CardContent>
+					<Typography gutterBottom variant='h5' component='h2'>
+						{title}
+					</Typography>
+					<Typography variant='body2' component='p'>
+						{text}
+					</Typography>
+				</CardContent>
+			</CardActionArea>
+		</Card>
 	)
 }
 
