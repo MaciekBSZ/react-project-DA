@@ -8,6 +8,7 @@ const NavBar = () => {
 	const history = useHistory()
 	return (
 		<Box
+			zIndex='1'
 			position='fixed'
 			display='flex'
 			flexDirection='row'

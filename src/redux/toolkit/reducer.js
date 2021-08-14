@@ -1,6 +1,6 @@
 import { combineReducers, createSlice } from '@reduxjs/toolkit'
 
-const initialState = { count: 0, start: 0 }
+const initialState = { count: 0, start: 1 }
 
 const counterSlice = createSlice({
 	name: 'counter',
@@ -21,7 +21,7 @@ const stopwatchSlice = createSlice({
 	name: 'stopwatch',
 	initialState,
 	reducers: {
-		increment(state) {
+		add(state) {
 			state.count++
 		},
 		minus(state) {

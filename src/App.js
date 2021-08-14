@@ -9,6 +9,7 @@ import StopWatch from './pages/StopWatch'
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
 import { createTheme, ThemeProvider } from '@material-ui/core'
+import MyInfo from './components/MyInfo'
 import './App.css'
 import RegisterPage from './pages/RegisterPage'
 const App = () => {
@@ -27,27 +28,13 @@ const App = () => {
 					<Route exact path='/'>
 						<MainPage />
 					</Route>
-					<Route path='/aboutme'>
-						<AboutMe />
-					</Route>
-					<Route path='/charlist'>
-						<CharList />
-					</Route>
-					<Route path='/clicker'>
-						<Clicker />
-					</Route>
-					<Route path='/loginpage'>
-						<LoginPage />
-					</Route>
-					<Route path='/stopwatch'>
-						<StopWatch />
-					</Route>
-					<Route path='/registerpage'>
-						<RegisterPage />
-					</Route>
-					<Route>
-						<ErrorPage />
-					</Route>
+					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />}/ >
+					<Route path='/charlist' children={<CharList />} />
+					<Route path='/clicker' children={<Clicker />}/> 
+					<Route path='/loginpage' children={<LoginPage />} />
+					<Route path='/stopwatch' children={	<StopWatch />}/ >
+					<Route path='/registerpage' children={<RegisterPage />} />
+					<Route children={ <ErrorPage />} />
 				</Switch>
 			</div>
 		</ThemeProvider>

@@ -4,13 +4,15 @@ import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
+import CardMedia from '@material-ui/core/CardMedia'
 
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
+		zIndex: -1,
 	},
 	media: {
-		width: 140,
+		height: 200,
 	},
 })
 const CharCard = ({ name, status, gender, image }) => {
@@ -18,7 +20,7 @@ const CharCard = ({ name, status, gender, image }) => {
 	return (
 		<Card className={classes.root}>
 			<CardActionArea>
-				<Card className={classes.media} image={image} />
+				<CardMedia className={classes.media} image={image} />
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
 						{name}

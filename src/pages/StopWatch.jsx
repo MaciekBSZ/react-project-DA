@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { minus, plus, addstart, minusstart, zero, incrementplusaddstart } from '../redux/ducks/stopwatchCounter'
 import { add, minus, addToStart, minusToStart, incrementByCount, zero } from '../redux/toolkit/reducer'
 import { useEffect, useState } from 'react'
 const StopWatch = () => {
