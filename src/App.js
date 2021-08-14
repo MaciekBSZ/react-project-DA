@@ -28,13 +28,14 @@ const App = () => {
 					<Route exact path='/'>
 						<MainPage />
 					</Route>
-					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />}/ >
+					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />} />
 					<Route path='/charlist' children={<CharList />} />
-					<Route path='/clicker' children={<Clicker />}/> 
+					<Route path='/clicker' children={<Clicker />} />
 					<Route path='/loginpage' children={<LoginPage />} />
-					<Route path='/stopwatch' children={	<StopWatch />}/ >
+					<Route path='/stopwatch' children={<StopWatch />} />
+					<Route path='charlist/:page/:status' children={<CharList />} />
 					<Route path='/registerpage' children={<RegisterPage />} />
-					<Route children={ <ErrorPage />} />
+					<Route children={<ErrorPage />} />
 				</Switch>
 			</div>
 		</ThemeProvider>

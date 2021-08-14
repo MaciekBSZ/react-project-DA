@@ -1,55 +1,51 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import CharCards from '../components/CharCards'
 import Loader from '../components/Loader'
 import Button from '@material-ui/core/Button'
+import useFetch from '../components/useFetch'
 
 const CharList = () => {
 	const [page, setPage] = useState(1)
-	const [cards, setCards] = useState(null)
-	const [loader, setLoader] = useState(true)
-	const getData = useCallback(async () => {
-		try {
-			const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-			setLoader(false)
-			const data = await res.json()
-			setCards(data)
-			console.log(data)
-		} catch (err) {
-			console.log(err)
-		}
-	}, [page])
-	useEffect(() => {
-		getData()
-	}, [getData])
+	const [status, setStatus] = useState('')
+	const { data, isPending, setData, setIsPending } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${status}`)
 
-	const handleNextPage =  () => {
-		if (cards.info.next !== null) {
-			setLoader(true)
-			setCards(null)
+	const handleNextPage = () => {
+		if (data.info.next !== null) {
+			setIsPending(true)
+			setData(null)
 			setPage(page => page + 1)
 		} else return
 	}
-	const handlePreviousPage =  () => {
-		if (cards.info.prev !== null) {
-			setCards(null)
-			setLoader(true)
+	const handlePreviousPage = () => {
+		if (data.info.prev !== null) {
+			setData(null)
+			setIsPending(true)
 			setPage(page => page - 1)
 		} else return
+	}
+	const handleState = newStatus => {
+		setStatus(newStatus)
 	}
 
 	return (
 		<>
-			{cards && (
+			<select onChange={e => handleState(e.target.value)} value={status}>
+				<option value={`&status=alive`}>alive</option>
+				<option value={`&status=dead`}>dead</option>
+				<option value={`&status=unknown`}>unknown</option>
+				<option value={''}>default</option>
+			</select>
+			{data && (
 				<div>
-					<Button onClick={handlePreviousPage}>{cards.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
-					<Button onClick={handleNextPage}>{cards.info.next !== null ? <p>Następna strona</p> : <p>Jesteś na ostatniej stronie</p>}</Button>
+					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
+					<Button onClick={handleNextPage}>{data.info.next !== null ? <p>Następna strona</p> : <p>Jesteś na ostatniej stronie</p>}</Button>
 					<h2>
-						O, tyle jest stron {cards.info.pages}, a jesteś na stronie {page}
+						O, tyle jest stron {data.info.pages}, a jesteś na stronie {page}
 					</h2>
-					<CharCards id={cards.results.id} results={cards.results} name={cards.results.name} image={cards.results.image} gender={cards.results.gender} />
+					<CharCards id={data.results.id} results={data.results} name={data.results.name} image={data.results.image} gender={data.results.gender} />
 				</div>
 			)}
-			{loader && <Loader />}
+			{isPending && <Loader />}
 		</>
 	)
 }
