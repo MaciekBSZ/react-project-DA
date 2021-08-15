@@ -3,6 +3,7 @@ import CharCards from '../components/CharCards'
 import Loader from '../components/Loader'
 import Button from '@material-ui/core/Button'
 import useFetch from '../components/useFetch'
+import CharListFilter from '../components/CharListFilter'
 
 const CharList = () => {
 	const [page, setPage] = useState(1)
@@ -24,17 +25,13 @@ const CharList = () => {
 		} else return
 	}
 	const handleState = newStatus => {
+		setPage(1)
 		setStatus(newStatus)
 	}
 
 	return (
 		<>
-			<select onChange={e => handleState(e.target.value)} value={status}>
-				<option value={`&status=alive`}>alive</option>
-				<option value={`&status=dead`}>dead</option>
-				<option value={`&status=unknown`}>unknown</option>
-				<option value={''}>default</option>
-			</select>
+			<CharListFilter handleState={handleState} status={status} />
 			{data && (
 				<div>
 					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
