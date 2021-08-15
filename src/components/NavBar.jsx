@@ -3,11 +3,32 @@ import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import { Box, ButtonGroup, Typography } from '@material-ui/core'
 import { SentimentVerySatisfied } from '@material-ui/icons'
-
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core'
+const useStyles = makeStyles({
+	root: {
+		transition: '0.5s',
+	},
+})
 const NavBar = () => {
+	const classes = useStyles()
 	const history = useHistory()
+	const [bgColor, setBgColor] = useState('')
+	const handleScroll = bgColor => {
+		if (bgColor !== 'nav.primary' && window.pageYOffset >= 100) {
+			setBgColor('nav.primary')
+		} else if (bgColor === 'nav.primary' && window.pageYOffset < 100) {
+			setBgColor('')
+		}
+	}
+	useEffect(() => {
+		window.onscroll = () => handleScroll(bgColor)
+	}, [bgColor])
 	return (
 		<Box
+			className={classes.root}
+			bgcolor={bgColor}
 			zIndex='1'
 			position='fixed'
 			display='flex'

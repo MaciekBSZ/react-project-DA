@@ -18,6 +18,9 @@ const App = () => {
 			primary: {
 				main: '#fefefe',
 			},
+			nav: {
+				primary: 'wheat',
+			},
 		},
 	})
 	return (
@@ -29,7 +32,7 @@ const App = () => {
 						<MainPage />
 					</Route>
 					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />} />
-					<Route path='/charlist' children={<CharList />} />
+					<Route path='/charlist' exact children={<CharList />} />
 					<Route path='/clicker' children={<Clicker />} />
 					<Route path='/loginpage' children={<LoginPage />} />
 					<Route path='/stopwatch' children={<StopWatch />} />

@@ -24,14 +24,13 @@ const CharList = () => {
 			setPage(page => page - 1)
 		} else return
 	}
-	const handleState = newStatus => {
+	const handleStatus = newStatus => {
 		setPage(1)
 		setStatus(newStatus)
 	}
-
 	return (
 		<>
-			<CharListFilter handleState={handleState} status={status} />
+			<CharListFilter handleStatus={handleStatus} status={status} />
 			{data && (
 				<div>
 					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
