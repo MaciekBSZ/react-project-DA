@@ -4,10 +4,12 @@ import Loader from '../components/Loader'
 import Button from '@material-ui/core/Button'
 import useFetch from '../components/useFetch'
 import CharListFilter from '../components/CharListFilter'
+import SortingFilter from '../components/SortingFilter'
 
 const CharList = () => {
 	const [page, setPage] = useState(1)
 	const [status, setStatus] = useState('')
+	const [isSorted, setIsSorted] = useState(false)
 	const { data, isPending, setData, setIsPending } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${status}`)
 
 	const handleNextPage = () => {
@@ -28,9 +30,19 @@ const CharList = () => {
 		setPage(1)
 		setStatus(newStatus)
 	}
+	const handleSort = () => {
+		setIsSorted(isSorted => !isSorted)
+		if (!isSorted) {
+			data.results.sort((b, a) => a.name.localeCompare(b.name))
+		}
+		if (isSorted) {
+			data.results.sort((a, b) => a.name.localeCompare(b.name))
+		}
+	}
 	return (
 		<>
 			<CharListFilter handleStatus={handleStatus} status={status} />
+			<SortingFilter handleSort={handleSort} isSorted={isSorted} />
 			{data && (
 				<div>
 					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>

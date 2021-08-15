@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
+		height: 300,
 		zIndex: 1,
 	},
 	media: {
@@ -20,6 +21,12 @@ const useStyles = makeStyles({
 			filter: 'brightness(1.2)',
 		},
 	},
+	content: {
+		height: 200,
+		'&:hover': {
+			backgroundColor: 'primary.light',
+		},
+	},
 })
 
 const CharCard = ({ name, status, gender, image }) => {
@@ -28,7 +35,7 @@ const CharCard = ({ name, status, gender, image }) => {
 		<Card className={classes.root}>
 			<CardActionArea>
 				<CardMedia className={classes.media} image={image} />
-				<CardContent>
+				<CardContent className={classes.content}>
 					<Typography gutterBottom variant='h5' component='h2'>
 						{name}
 					</Typography>
