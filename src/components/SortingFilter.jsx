@@ -1,15 +1,3 @@
-// const SortingFilter = ({ handleSort, isSorted }) => {
-// 	return (
-// 		<select onChange={e => handleSort(e.target.value)} value={isSorted}>
-// 			<option value={false}>Bez sortowania</option>
-// 			<option value={'aToZ'}>Sortuj od A do Z</option>
-// 			<option value={`zToA`}>Sortuj od Z do A</option>
-// 		</select>
-// 	)
-// }
-
-// export default SortingFilter
-
 import FormGroup from '@material-ui/core/FormGroup'
 import Switch from '@material-ui/core/Switch'
 import Grid from '@material-ui/core/Grid'

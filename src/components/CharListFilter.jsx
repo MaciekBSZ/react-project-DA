@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
@@ -20,13 +19,8 @@ const CharListFilter = ({ handleStatus, status }) => {
 	const classes = useStyles()
 	return (
 		<FormControl className={classes.formControl}>
-			<InputLabel id='demo-simple-select-label'>Filtr postaci</InputLabel>
-			<Select
-				labelId='demo-simple-select-label'
-				id='demo-simple-select'
-				// value={status}
-				onChange={e => handleStatus(e.target.value)}
-				value={status}>
+			<InputLabel id='select'>Filtr postaci</InputLabel>
+			<Select labelId='select' id='select' onChange={e => handleStatus(e.target.value)} value={status}>
 				<MenuItem value={''}>Bez filtru</MenuItem>
 				<MenuItem value={`&status=alive`}> Żywy</MenuItem>
 				<MenuItem value={`&status=dead`}>Martwy</MenuItem>
