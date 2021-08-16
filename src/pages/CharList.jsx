@@ -11,20 +11,18 @@ const CharList = () => {
 	const [page, setPage] = useState(1)
 	const [status, setStatus] = useState('')
 	const [isSorted, setIsSorted] = useState(false)
-	const { data, isPending, setData, setIsPending } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${status}`)
+	const { data, isPending, setIsPending } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${status}`)
 
 	const handleNextPage = () => {
-		if (data.info.next !== null) {
-			setIsPending(true)
-			setData(null)
+		if (data.info.next !== null && !isPending) {
 			setPage(page => page + 1)
+			setIsPending(true)
 		} else return
 	}
 	const handlePreviousPage = () => {
-		if (data.info.prev !== null) {
-			setData(null)
-			setIsPending(true)
+		if (data.info.prev !== null && !isPending) {
 			setPage(page => page - 1)
+			setIsPending(true)
 		} else return
 	}
 	const handleStatus = newStatus => {
@@ -46,6 +44,7 @@ const CharList = () => {
 				<CharListFilter handleStatus={handleStatus} status={status} />
 				<SortingFilter handleSort={handleSort} isSorted={isSorted} />
 			</Container>
+
 			{data && (
 				<div>
 					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
@@ -56,6 +55,7 @@ const CharList = () => {
 					<CharCards id={data.results.id} results={data.results} name={data.results.name} image={data.results.image} gender={data.results.gender} />
 				</div>
 			)}
+
 			{isPending && <Loader />}
 		</>
 	)

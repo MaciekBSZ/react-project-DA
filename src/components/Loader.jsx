@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const LoaderIcon = styled(CircularProgress)`
 	& {
 		position: absolute;
-		top: 35%;
-		left: 40%;
+		top: 37.5%;
+		left: 37.5%;
 		color: wheat;
 	}
 `

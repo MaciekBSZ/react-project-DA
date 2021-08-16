@@ -6,9 +6,9 @@ const useFetch = url => {
 	useEffect(() => {
 		async function getData() {
 			try {
-				setIsPending(false)
 				const res = await fetch(url)
 				const data = await res.json()
+				setIsPending(false)
 				setData(data)
 			} catch (err) {
 				setIsPending(true)
@@ -18,7 +18,7 @@ const useFetch = url => {
 		}
 		getData()
 	}, [url])
-	return { data, isPending, setData, setIsPending }
+	return { data, isPending, setIsPending }
 }
 
 export default useFetch
