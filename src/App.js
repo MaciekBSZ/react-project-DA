@@ -28,14 +28,13 @@ const App = () => {
 			<NavBar />
 			<div style={{ paddingTop: '6vh' }}>
 				<Switch>
-					<Route exact path='/'>
-						<MainPage />
-					</Route>
+					<Route exact path='/' children={<MainPage />} />
 					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />} />
 					<Route path='/charlist' exact children={<CharList />} />
 					<Route path='/clicker' children={<Clicker />} />
 					<Route path='/loginpage' children={<LoginPage />} />
 					<Route path='/stopwatch' children={<StopWatch />} />
+					*/ Poniżej będzie rerouting ze strony z listą postaci do szczegółów poszczególnych postaci, ale to wkrótce. ;] */
 					<Route path='charlist/:page/:status' children={<CharList />} />
 					<Route path='/registerpage' children={<RegisterPage />} />
 					<Route children={<ErrorPage />} />

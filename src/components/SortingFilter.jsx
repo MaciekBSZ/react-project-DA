@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/styles'
 
 const AntSwitch = withStyles(theme => ({
 	root: {
-		width: 28,
+		width: 30,
 		height: 16,
 		padding: 0,
 		display: 'flex',

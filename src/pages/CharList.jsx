@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import useFetch from '../components/useFetch'
 import CharListFilter from '../components/CharListFilter'
 import SortingFilter from '../components/SortingFilter'
+import { Container } from '@material-ui/core'
 
 const CharList = () => {
 	const [page, setPage] = useState(1)
@@ -41,8 +42,10 @@ const CharList = () => {
 	}
 	return (
 		<>
-			<CharListFilter handleStatus={handleStatus} status={status} />
-			<SortingFilter handleSort={handleSort} isSorted={isSorted} />
+			<Container>
+				<CharListFilter handleStatus={handleStatus} status={status} />
+				<SortingFilter handleSort={handleSort} isSorted={isSorted} />
+			</Container>
 			{data && (
 				<div>
 					<Button onClick={handlePreviousPage}>{data.info.prev !== null ? <p>Poprzednia strona</p> : <p>Jesteś na pierwszej stronie</p>} </Button>
