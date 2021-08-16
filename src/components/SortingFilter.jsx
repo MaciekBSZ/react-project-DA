@@ -30,8 +30,6 @@ const AntSwitch = withStyles(theme => ({
 		boxShadow: 'none',
 	},
 	track: {
-		border: `1px solid ${theme.palette.grey[500]}`,
-		borderRadius: 16 / 2,
 		opacity: 1,
 		backgroundColor: theme.palette.common.white,
 	},

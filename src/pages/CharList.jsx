@@ -5,7 +5,14 @@ import Button from '@material-ui/core/Button'
 import useFetch from '../components/useFetch'
 import CharListFilter from '../components/CharListFilter'
 import SortingFilter from '../components/SortingFilter'
-import { Container } from '@material-ui/core'
+import styled from 'styled-components'
+
+const Container = styled.div`
+	margin: 15px 10px;
+	display: flex;
+	flex-direction: column;
+	width: 150px;
+`
 
 const CharList = () => {
 	const [page, setPage] = useState(1)
