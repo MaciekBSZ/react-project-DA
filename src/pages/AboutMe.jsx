@@ -37,15 +37,15 @@ const Bio = styled.div`
 	margin: 30px;
 	padding: 20px;
 `
-const AboutMe = ({ MyInfo }) => {
+const AboutMe = ({ myInfo }) => {
 	return (
 		<Box>
 			<Photo></Photo>
 			<Bio>
 				<Paper>
-					<Typography variant='h3'>{MyInfo.name}</Typography>
-					<Typography variant='h3'>{MyInfo.secondName}</Typography>
-					<Typography>{MyInfo.biogram}</Typography>
+					<Typography variant='h3'>{myInfo.name}</Typography>
+					<Typography variant='h3'>{myInfo.secondName}</Typography>
+					<Typography>{myInfo.biogram}</Typography>
 				</Paper>
 			</Bio>
 		</Box>

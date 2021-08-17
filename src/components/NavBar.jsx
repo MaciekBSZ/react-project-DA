@@ -1,11 +1,8 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import { Box, ButtonGroup, Typography } from '@material-ui/core'
+import { Box, ButtonGroup, Typography, makeStyles, Button } from '@material-ui/core'
 import { SentimentVerySatisfied } from '@material-ui/icons'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
 	root: {
 		transition: '0.5s',

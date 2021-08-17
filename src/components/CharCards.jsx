@@ -1,5 +1,5 @@
-import CharCard from './CharCard'
 import { Grid } from '@material-ui/core'
+import CharCard from './CharCard'
 const CharCards = ({ results }) => {
 	const cards = results.map(({ name, id, image, gender, status }) => (
 		<Grid item key={id} sm={3}>

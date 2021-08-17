@@ -1,5 +1,4 @@
 import React from 'react'
-import MainPageCard from './MainPageCard'
 import InfoIcon from '@material-ui/icons/Info'
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
 import AvTimerIcon from '@material-ui/icons/AvTimer'
@@ -7,6 +6,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import TimerIcon from '@material-ui/icons/Timer'
 import DoneIcon from '@material-ui/icons/Done'
 import { Grid, makeStyles } from '@material-ui/core'
+import MainPageCard from './MainPageCard'
 const useStyles = makeStyles({
 	icon: {
 		margin: 'auto',

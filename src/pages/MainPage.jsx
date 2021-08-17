@@ -1,6 +1,6 @@
+import React from 'react'
 import { Box, TextField, Typography, Button, makeStyles } from '@material-ui/core'
 import MainPageCards from '../components/MainPageCards'
-import React from 'react'
 
 const MainPage = () => {
 	const useStyles = makeStyles({

@@ -1,14 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
 import CharCards from '../components/CharCards'
 import Loader from '../components/Loader'
-import Button from '@material-ui/core/Button'
 import useFetch from '../components/useFetch'
 import CharListFilter from '../components/CharListFilter'
 import SortingFilter from '../components/SortingFilter'
-import styled from 'styled-components'
 import ErrorPage from '../pages/ErrorPage'
-import { useEffect } from 'react'
-import { useCallback } from 'react'
 
 const Container = styled.div`
 	margin: 15px 10px;

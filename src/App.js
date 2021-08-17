@@ -9,7 +9,7 @@ import StopWatch from './pages/StopWatch'
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
 import { createTheme, ThemeProvider } from '@material-ui/core'
-import MyInfo from './components/MyInfo'
+import myInfo from './data/myInfo'
 import './App.css'
 import RegisterPage from './pages/RegisterPage'
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
 			<div style={{ paddingTop: '6vh' }}>
 				<Switch>
 					<Route exact path='/' children={<MainPage />} />
-					<Route path='/aboutme' children={<AboutMe MyInfo={MyInfo} />} />
+					<Route path='/aboutme' children={<AboutMe myInfo={myInfo} />} />
 					<Route path='/charlist' exact children={<CharList />} />
 					<Route path='/clicker' children={<Clicker />} />
 					<Route path='/loginpage' children={<LoginPage />} />

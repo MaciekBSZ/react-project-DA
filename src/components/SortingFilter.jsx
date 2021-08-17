@@ -1,7 +1,4 @@
-import FormGroup from '@material-ui/core/FormGroup'
-import Switch from '@material-ui/core/Switch'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import { FormGroup, Grid, Typography, Switch } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
 
 const AntSwitch = withStyles(theme => ({
