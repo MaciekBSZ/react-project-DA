@@ -15,6 +15,7 @@ const Box = styled.div`
 	background-repeat: no-repeat;
 	align-items: center;
 	justify-content: center;
+	box-shadow: 7px 8px 10px grey;
 `
 const Photo = styled.div`
 	width: 500px;

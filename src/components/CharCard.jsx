@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
-		height: 300,
+		height: 350,
 		zIndex: 1,
 	},
 	media: {

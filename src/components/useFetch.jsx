@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 const useFetch = url => {
 	const [data, setData] = useState(null)
 	const [isPending, setIsPending] = useState(true)
+	const [error, setError] = useState(false)
 	useEffect(() => {
 		async function getData() {
 			try {
@@ -11,14 +12,14 @@ const useFetch = url => {
 				setIsPending(false)
 				setData(data)
 			} catch (err) {
-				setIsPending(true)
-				alert(err)
-				console.log(err)
+				setIsPending(false)
+				setData(null)
+				setError(true)
 			}
 		}
 		getData()
 	}, [url])
-	return { data, isPending, setIsPending }
+	return { data, isPending, setIsPending, error }
 }
 
 export default useFetch
