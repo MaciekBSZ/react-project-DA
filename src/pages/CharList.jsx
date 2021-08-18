@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addPage, decPage, firstPage } from '../redux/toolkit/reducer'
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import CharCards from '../components/CharCards'
@@ -16,20 +18,21 @@ const Container = styled.div`
 `
 
 const CharList = () => {
-	const [page, setPage] = useState(1)
+	const page = useSelector(state => state.pageCounter.page)
+	const dispatch = useDispatch()
 	const [status, setStatus] = useState('')
 	const [isSorted, setIsSorted] = useState(false)
 	const { data, isPending, setIsPending, error } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${status}`)
 
 	const handleNextPage = () => {
 		if (data.info.next !== null && !isPending) {
-			setPage(page => page + 1)
+			dispatch(addPage())
 			setIsPending(true)
 		} else return
 	}
 	const handlePreviousPage = () => {
 		if (data.info.prev !== null && !isPending) {
-			setPage(page => page - 1)
+			dispatch(decPage())
 			setIsPending(true)
 		} else return
 	}
@@ -38,13 +41,13 @@ const CharList = () => {
 			if (data) {
 				console.log(data)
 				if (e.key === 'ArrowLeft' && page > 1) {
-					setPage(page - 1)
+					dispatch(decPage())
 				} else if (e.key === 'ArrowRight' && data.info.pages > page) {
-					setPage(page + 1)
+					dispatch(addPage())
 				}
 			}
 		},
-		[data, page]
+		[data, page, dispatch]
 	)
 	useEffect(() => {
 		document.addEventListener('keyup', handleArrowNav)
@@ -53,7 +56,7 @@ const CharList = () => {
 		}
 	}, [handleArrowNav])
 	const handleStatus = newStatus => {
-		setPage(1)
+		dispatch(firstPage())
 		setStatus(newStatus)
 	}
 	const handleSort = () => {

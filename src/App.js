@@ -1,6 +1,7 @@
 import React from 'react'
-import NavBar from './components/NavBar'
+import { createTheme, ThemeProvider } from '@material-ui/core'
 import { Switch, Route } from 'react-router-dom'
+import NavBar from './components/NavBar'
 import MainPage from './pages/MainPage'
 import AboutMe from './pages/AboutMe'
 import CharList from './pages/CharList'
@@ -8,7 +9,7 @@ import Clicker from './pages/Clicker'
 import StopWatch from './pages/StopWatch'
 import LoginPage from './pages/LoginPage'
 import ErrorPage from './pages/ErrorPage'
-import { createTheme, ThemeProvider } from '@material-ui/core'
+import CharacterDetails from './pages/CharacterDetails'
 import myInfo from './data/myInfo'
 import './App.css'
 import RegisterPage from './pages/RegisterPage'
@@ -30,12 +31,12 @@ const App = () => {
 				<Switch>
 					<Route exact path='/' children={<MainPage />} />
 					<Route path='/aboutme' children={<AboutMe myInfo={myInfo} />} />
-					<Route path='/charlist' exact children={<CharList />} />
 					<Route path='/clicker' children={<Clicker />} />
 					<Route path='/loginpage' children={<LoginPage />} />
 					<Route path='/stopwatch' children={<StopWatch />} />
 					*/ Poniżej będzie rerouting ze strony z listą postaci do szczegółów poszczególnych postaci, ale to wkrótce. ;] */
-					<Route path='charlist/:page/:status' children={<CharList />} />
+					<Route path='/charlist' exact children={<CharList />} />
+					<Route path='/charlist/:name/:id' exact children={<CharacterDetails />} />
 					<Route path='/registerpage' children={<RegisterPage />} />
 					<Route children={<ErrorPage />} />
 				</Switch>
