@@ -14,11 +14,11 @@ const Container = styled.div`
 	margin: 15px 10px;
 	display: flex;
 	flex-direction: column;
-	width: 150px;
+	width: 200px;
 `
 
 const CharList = () => {
-	const page = useSelector(state => state.pageCounter.page)
+	const page = useSelector(state => state.counters.pageCounter.page)
 	const dispatch = useDispatch()
 	const [status, setStatus] = useState('')
 	const [isSorted, setIsSorted] = useState(false)

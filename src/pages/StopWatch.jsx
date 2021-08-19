@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add, minus, addToStart, minusToStart, incrementByCount, zero } from '../redux/toolkit/reducer'
 import { useEffect, useState } from 'react'
 const StopWatch = () => {
-	const count = useSelector(state => state.stopwatch.count)
-	const startCount = useSelector(state => state.stopwatch.start)
+	const count = useSelector(state => state.counters.stopwatch.count)
+	const startCount = useSelector(state => state.counters.stopwatch.start)
 	const [timeOn, setTimeOn] = useState(false)
 	const dispatch = useDispatch()
 	useEffect(() => {

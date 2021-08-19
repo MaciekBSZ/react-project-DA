@@ -6,7 +6,7 @@ const Title = styled.h2`
 	color: ${props => (props.modulo ? 'green' : null)};
 `
 const Clicker = () => {
-	const count = useSelector(state => state.counter.count)
+	const count = useSelector(state => state.counters.counter.count)
 	const dispatch = useDispatch()
 	return (
 		<>

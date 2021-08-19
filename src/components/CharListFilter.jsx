@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 const CharListFilter = ({ handleStatus, status }) => {
 	const classes = useStyles()
-	const filtersValues = useSelector(state => state.filters)
+	const filtersValues = useSelector(state => state.arrays.filters)
 	// const filtersValues = [
 	// 	{ id: 1, value: ``, title: 'Bez filtru' },
 	// 	{ id: 2, value: `&status=alive`, title: 'Żywy' },
