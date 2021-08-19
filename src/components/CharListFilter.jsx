@@ -13,14 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 const CharListFilter = ({ handleStatus, status }) => {
 	const classes = useStyles()
-	const filtersValues = useSelector(state => state.arrays.filters)
-	// const filtersValues = [
-	// 	{ id: 1, value: ``, title: 'Bez filtru' },
-	// 	{ id: 2, value: `&status=alive`, title: 'Żywy' },
-	// 	{ id: 3, value: `&status=dead`, title: 'Martwy' },
-	// 	{ id: 4, value: `&status=unknown`, title: 'Nieznany' },
-	// ]
-	const filter = filtersValues.map(({ title, value, id }) => (
+	const filtersValues = useSelector(state => state.arrays.filters).map(({ title, value, id }) => (
 		<MenuItem key={id} value={value}>
 			{title}
 		</MenuItem>
@@ -29,7 +22,7 @@ const CharListFilter = ({ handleStatus, status }) => {
 		<FormControl className={classes.formControl}>
 			<InputLabel id='select'>Filtr postaci</InputLabel>
 			<Select labelId='select' id='select' onChange={e => handleStatus(e.target.value)} value={status}>
-				{filter}
+				{filtersValues}
 			</Select>
 		</FormControl>
 	)
