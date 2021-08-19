@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core'
 import { Switch, Route } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import './App.css'
-import { useSelector } from 'react-redux'
+import routing from './data/routing'
 const App = () => {
 	const theme = createTheme({
 		palette: {
@@ -15,7 +15,7 @@ const App = () => {
 			},
 		},
 	})
-	const routLinks = useSelector(state => state.arrays.routing).map(({ id, children, exact, path }) => <Route key={id} path={path} exact={exact} children={children} />)
+	const routLinks = routing.map(({ id, children, exact, path }) => <Route key={id} path={path} exact={exact} children={children} />)
 	return (
 		<ThemeProvider theme={theme}>
 			<NavBar />
