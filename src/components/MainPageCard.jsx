@@ -2,6 +2,12 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useHistory } from 'react-router-dom'
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
+import styled from 'styled-components'
+const Icon = styled.span`
+	> svg {
+		font-size: 4rem;
+	}
+`
 
 const useStyles = makeStyles({
 	root: {
@@ -26,7 +32,7 @@ const MainPageCard = ({ icon, title, text, path }) => {
 		<Card className={classes.root} onClick={() => history.push(path)}>
 			<CardActionArea>
 				<CardMedia className={classes.media} />
-				{icon}
+				<Icon>{icon}</Icon>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
 						{title}

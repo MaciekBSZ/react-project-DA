@@ -1,22 +1,28 @@
 import { Link, useParams } from 'react-router-dom'
+import { Typography } from '@material-ui/core'
+import Loader from '../components/Loader'
+import ErrorPage from './ErrorPage'
 import useFetch from '../components/useFetch'
 const CharacterDetails = () => {
 	const { id, name } = useParams()
-	const { data } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
+	const { data, isPending, error } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
+
 	return (
-		<div>
+		<>
 			{data && (
 				<>
 					<Link to={`/charlist/`}>
 						<button>Powrót do listy postaci</button>
 					</Link>
-					<div>{name}</div>
-					<div>{data.origin.name}</div>
-					<div>{data.status}</div>
-					<div>{data.location.name}</div>
+					<Typography variant='h2'>Imie postaci: {name}</Typography>
+					<Typography variant='h3'>Pochodzenie postaci: {data.origin.name}</Typography>
+					<Typography variant='h3'>Status postaci: {data.status}</Typography>
+					<Typography variant='h3'>Lokalizacja postaci: {data.location.name}</Typography>
 				</>
 			)}
-		</div>
+			{isPending && <Loader />}
+			{error && <ErrorPage />}
+		</>
 	)
 }
 
