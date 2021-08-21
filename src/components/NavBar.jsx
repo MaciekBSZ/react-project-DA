@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { Box, ButtonGroup, Typography, makeStyles, Button } from '@material-ui/core'
 import { SentimentVerySatisfied } from '@material-ui/icons'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 const useStyles = makeStyles({
 	box: {
 		transition: '0.5s',
@@ -22,15 +23,41 @@ const useStyles = makeStyles({
 		borderRadius: '12px',
 	},
 })
+const Navbutton = styled(Button)`
+	& {
+		transition: color 0.5s;
+		z-index: 0;
+		&:hover {
+			color: wheat;
+		}
+		&::after {
+			position: absolute;
+			content: '';
+			bottom: -5px;
+			left: 0;
+			height: 0;
+			width: 100%;
+			background-color: black;
+			z-index: -1;
+			transition: border-top 0.3s, border-bottom 0.3s, height 0.3s;
+		}
+	}
+	&:hover::after {
+		border-top: 5px solid;
+		border-bottom: 5px solid;
+		height: 100%;
+	}
+`
+
 const NavBar = () => {
 	const classes = useStyles()
 	const history = useHistory()
 	const [bgColor, setBgColor] = useState('')
 	const navButtons = useSelector(state => state.arrays.navBarButtons)
 	const buttons = navButtons.map(({ name, path, id }) => (
-		<Button key={id} onClick={() => history.push(path)}>
+		<Navbutton key={id} onClick={() => history.push(path)}>
 			{name}
-		</Button>
+		</Navbutton>
 	))
 	const handleScroll = bgColor => {
 		if (bgColor !== 'nav.primary' && window.pageYOffset >= 100) {

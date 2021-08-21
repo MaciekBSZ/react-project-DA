@@ -6,7 +6,7 @@ import TimerIcon from '@material-ui/icons/Timer'
 import DoneIcon from '@material-ui/icons/Done'
 
 const mainPageCards = [
-	{ id: 1, title: 'O mnie', path: '/aboutme', text: 'Strona z opisem', icon: <InfoIcon /> },
+	{ id: 1, title: 'O mnie', path: '/aboutme', text: 'Strona z dummytextem', icon: <InfoIcon /> },
 	{ id: 2, title: 'Lista Postaci', path: '/charlist', text: 'Lista postaci z kreskówki Rick and Morty', icon: <EmojiPeopleIcon /> },
 	{ id: 3, title: 'Licznik', path: '/clicker', text: 'Prosty licznik', icon: <AvTimerIcon /> },
 	{ id: 4, title: 'Strona logowania', path: '/loginpage', text: 'Strona logowania', icon: <ExitToAppIcon /> },

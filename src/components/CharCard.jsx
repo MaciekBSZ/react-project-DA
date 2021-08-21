@@ -4,9 +4,14 @@ import { Card, CardActionArea, CardContent, Typography, CardMedia } from '@mater
 
 const useStyles = makeStyles({
 	root: {
-		maxWidth: 345,
 		height: 350,
 		zIndex: 1,
+		transition: 'box-shadow 0.5s, color 0.5s, background 0.5s',
+		'&:hover': {
+			background: 'black',
+			color: 'wheat',
+			boxShadow: '5px 5px 5px wheat',
+		},
 	},
 	media: {
 		height: 200,
@@ -19,9 +24,6 @@ const useStyles = makeStyles({
 	},
 	content: {
 		height: 200,
-		'&:hover': {
-			backgroundColor: 'primary.light',
-		},
 	},
 })
 

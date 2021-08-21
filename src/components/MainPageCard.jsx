@@ -8,16 +8,16 @@ const Icon = styled.span`
 		font-size: 4rem;
 	}
 `
-
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
-		transition: '0.5s',
+		transition: 'background 0.5s, color 0.5s, box-shadow 0.5s',
 		textAlign: 'center',
 		margin: 'auto',
 		'&:hover': {
 			background: 'black',
 			color: 'wheat',
+			boxShadow: '10px 10px 10px wheat',
 		},
 	},
 	media: {
