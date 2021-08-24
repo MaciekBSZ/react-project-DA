@@ -53,8 +53,7 @@ const NavBar = () => {
 	const classes = useStyles()
 	const history = useHistory()
 	const [bgColor, setBgColor] = useState('')
-	const navButtons = useSelector(state => state.arrays.navBarButtons)
-	const buttons = navButtons.map(({ name, path, id }) => (
+	const navButtons = useSelector(state => state.arrays.navBarButtons).map(({ name, path, id }) => (
 		<Navbutton key={id} onClick={() => history.push(path)}>
 			{name}
 		</Navbutton>
@@ -75,7 +74,7 @@ const NavBar = () => {
 				<SentimentVerySatisfied />
 				<Typography>No siema!</Typography>
 			</Box>
-			<ButtonGroup variant='text'>{buttons}</ButtonGroup>
+			<ButtonGroup variant='text'>{navButtons}</ButtonGroup>
 		</Box>
 	)
 }
