@@ -16,8 +16,8 @@ const registerSlice = createSlice({
 		},
 	},
 })
-const registerErrorSlice = createSlice({
-	name: 'registerErrors',
+const registerCheckSlice = createSlice({
+	name: 'registerCheck',
 	initialState: {
 		name: false,
 		lastName: false,
@@ -25,19 +25,19 @@ const registerErrorSlice = createSlice({
 		email: false,
 	},
 	reducers: {
-		correctName: state => {
-			state.name = true
+		correctName: (state, action) => {
+			state.name = action.payload
 		},
-		correctLastName: state => {
-			state.lastName = true
+		correctLastName: (state, action) => {
+			state.lastName = action.payload
 		},
-		correctPassword: state => {
-			state.password = true
+		correctPassword: (state, action) => {
+			state.password = action.payload
 		},
 		correctEmail: (state, action) => {
 			state.email = action.payload
 		},
-		resetErrrors: state => {
+		resetCheck: state => {
 			state.name = false
 			state.lastName = false
 			state.password = false
@@ -53,9 +53,9 @@ const emailDomains = createSlice({
 const registerReducer = combineReducers({
 	registerEmailDomains: emailDomains.reducer,
 	registerData: registerSlice.reducer,
-	registerError: registerErrorSlice.reducer,
+	registerCheck: registerCheckSlice.reducer,
 })
 
-export const { correctName, correctEmail, correctLastName, correctPassword } = registerErrorSlice.actions
+export const { correctName, correctEmail, correctLastName, correctPassword, resetCheck } = registerCheckSlice.actions
 export const { addUser } = registerSlice.actions
 export default registerReducer
