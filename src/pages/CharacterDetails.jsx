@@ -1,8 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
-import { Typography } from '@material-ui/core'
 import Loader from '../components/Loader'
 import ErrorPage from './ErrorPage'
 import useFetch from '../components/useFetch'
+import TypeWriterEffect from 'react-typewriter-effect'
+import { Button } from '@material-ui/core'
 const CharacterDetails = () => {
 	const { id, name } = useParams()
 	const { data, isPending, error } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
@@ -12,12 +13,20 @@ const CharacterDetails = () => {
 			{data && (
 				<>
 					<Link to={`/charlist/`}>
-						<button>Powrót do listy postaci</button>
+						<Button>Powrót do listy postaci</Button>
 					</Link>
-					<Typography variant='h2'>Imie postaci: {name}</Typography>
-					<Typography variant='h3'>Pochodzenie postaci: {data.origin.name}</Typography>
-					<Typography variant='h3'>Status postaci: {data.status}</Typography>
-					<Typography variant='h3'>Lokalizacja postaci: {data.location.name}</Typography>
+					<TypeWriterEffect
+						textStyle={{
+							color: '#3F3D56',
+							fontWeight: 500,
+							fontSize: '1.5em',
+						}}
+						startDelay={2000}
+						cursorColor='#3F3D56'
+						multiText={[`Imie postaci: ${name}`, `Pochodzenie postaci: ${data.origin.name}`, `Status postaci: ${data.status}`, `Lokalizacja postaci: ${data.location.name}`]}
+						multiTextDelay={2000}
+						typeSpeed={50}
+					/>
 				</>
 			)}
 			{isPending && <Loader />}

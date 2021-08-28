@@ -8,8 +8,8 @@ import { addUser, correctEmail, correctName, correctLastName, resetCheck, correc
 
 const RegisterPage = () => {
 	const [value, setValue] = useState({ name: null, lastName: null, email: null, password: null })
-	const [registerError, setRegisterError] = useState({ name: false, lastName: false, email: false, password: false, usedEmail: false })
-	const [emailHelperText, setEmailHelperText] = useState('')
+	const [registerError, setRegisterError] = useState({ wrongName: false, wrongLastName: false, wrongEmail: false, wrongPassword: false })
+	const [emailHelperText, setEmailHelperText] = useState(null)
 	const dispatch = useDispatch()
 	const emailDomains = useSelector(state => state.registers.registerEmailDomains)
 	const registerCheck = useSelector(state => state.registers.registerCheck)
@@ -21,6 +21,10 @@ const RegisterPage = () => {
 				margin: theme.spacing(1),
 				width: 200,
 			},
+			'& .Mui-error': {
+				background: '#900c3e',
+				color: 'wheat',
+			},
 		},
 	}))
 
@@ -30,27 +34,26 @@ const RegisterPage = () => {
 			dispatch(addUser(value))
 			dispatch(resetCheck())
 			e.target.reset()
-			setValue({ name: null, lastName: null, email: null, password: null })
 		} else {
 			if (!registerCheck.name) {
 				setRegisterError(prevRegisterError => {
-					return { ...prevRegisterError, name: true }
+					return { ...prevRegisterError, wrongName: true }
 				})
 			}
 			if (!registerCheck.lastName) {
 				setRegisterError(prevRegisterError => {
-					return { ...prevRegisterError, lastName: true }
+					return { ...prevRegisterError, wrongLastName: true }
 				})
 			}
 			if (!registerCheck.email) {
 				setRegisterError(prevRegisterError => {
-					return { ...prevRegisterError, email: true }
+					return { ...prevRegisterError, wrongEmail: true }
 				})
 				setEmailHelperText('Podaj prawidłowy email')
 			}
 			if (!registerCheck.password) {
 				setRegisterError(prevRegisterError => {
-					return { ...prevRegisterError, password: true }
+					return { ...prevRegisterError, wrongPassword: true }
 				})
 			}
 		}
@@ -61,18 +64,18 @@ const RegisterPage = () => {
 				if (userData.email === e.target.value) {
 					console.log(userData.email)
 					dispatch(correctEmail(false))
-					setEmailHelperText('email już istnieje')
+					setEmailHelperText('Email już istnieje')
 					setRegisterError(prevRegisterError => {
-						return { ...prevRegisterError, email: true }
+						return { ...prevRegisterError, wrongEmail: true }
 					})
 					return
 				}
 			}
 			dispatch(correctEmail(true))
 			setValue({ ...value, email: e.target.value })
-			setEmailHelperText('')
+			setEmailHelperText(null)
 			setRegisterError(prevRegisterError => {
-				return { ...prevRegisterError, email: false }
+				return { ...prevRegisterError, wrongEmail: false }
 			})
 		} else {
 			dispatch(correctEmail(false))
@@ -84,7 +87,7 @@ const RegisterPage = () => {
 			setValue({ ...value, name: e.target.value })
 			dispatch(correctName(true))
 			setRegisterError(prevRegisterError => {
-				return { ...prevRegisterError, name: false }
+				return { ...prevRegisterError, wrongName: false }
 			})
 		} else {
 			dispatch(correctName(false))
@@ -95,7 +98,7 @@ const RegisterPage = () => {
 			setValue({ ...value, lastName: e.target.value })
 			dispatch(correctLastName(true))
 			setRegisterError(prevRegisterError => {
-				return { ...prevRegisterError, lastName: false }
+				return { ...prevRegisterError, wrongLastName: false }
 			})
 		} else {
 			dispatch(correctLastName(false))
@@ -103,10 +106,10 @@ const RegisterPage = () => {
 	}
 	const handlePassword = e => {
 		if (e.target.value.length > 2) {
-			setValue({ ...value, password: e.target.value })
+			setValue({ ...value, password: e.target.value.toLowerCase() })
 			dispatch(correctPassword(true))
 			setRegisterError(prevRegisterError => {
-				return { ...prevRegisterError, password: false }
+				return { ...prevRegisterError, wrongPassword: false }
 			})
 		} else {
 			dispatch(correctPassword(false))
@@ -118,27 +121,28 @@ const RegisterPage = () => {
 			<form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete='off'>
 				<div>
 					<TextField
-						error={registerError.name ? true : false}
-						helperText={registerError.name ? 'Podaj prawidłowe imie' : ''}
+						error={registerError.wrongName && true}
+						helperText={registerError.wrongName && 'Podaj prawidłowe imie'}
 						onChange={e => handleName(e)}
 						required
 						label='Imie'
-						placeholder='Imie'
+						placeholder='Podaj imie'
 						variant='filled'
+						color='nav.primary'
 					/>
 					<TextField
-						error={registerError.lastName ? true : false}
-						helperText={registerError.lastName ? 'Podaj prawidłowe nazwisko' : ''}
+						error={registerError.wrongLastName && true}
+						helperText={registerError.wrongLastName && 'Podaj prawidłowe nazwisko'}
 						onChange={e => handleLastName(e)}
 						required
 						label='Nazwisko'
 						placeholder='Podaj nazwisko'
 						variant='filled'
 					/>
-					<TextField error={registerError.email ? true : false} helperText={emailHelperText} onChange={e => handleEmail(e)} required label='email' placeholder='Podaj email' variant='filled' />
+					<TextField error={registerError.wrongEmail && true} helperText={emailHelperText} onChange={e => handleEmail(e)} required label='email' placeholder='Podaj email' variant='filled' />
 					<TextField
-						error={registerError.password ? true : false}
-						helperText={registerError.password ? 'Hasło za krótkie' : ''}
+						error={registerError.wrongPassword && true}
+						helperText={registerError.wrongPassword && 'Hasło za krótkie'}
 						onChange={e => handlePassword(e)}
 						required
 						id='text'
