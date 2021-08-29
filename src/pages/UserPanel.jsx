@@ -26,12 +26,12 @@ const UserPanel = () => {
 		<Box>
 			<TypeWriterEffect
 				textStyle={{
-					color: '#fff',
+					color: 'wheat',
 					fontWeight: 500,
 					fontSize: '1.5em',
 				}}
 				startDelay={2000}
-				cursorColor='#fff'
+				cursorColor='wheat'
 				text={`Witaj ${name} ${lastName}!`}
 				typeSpeed={50}
 			/>

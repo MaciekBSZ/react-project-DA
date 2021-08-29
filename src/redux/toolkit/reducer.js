@@ -1,7 +1,5 @@
 import { combineReducers, createSlice } from '@reduxjs/toolkit'
 
-// const initialState = { count: 0, start: 1, page: 1 }
-
 const pageSlice = createSlice({
 	name: 'pageCounter',
 	initialState: {
@@ -40,15 +38,16 @@ const counterSlice = createSlice({
 const stopwatchSlice = createSlice({
 	name: 'stopwatch',
 	initialState: {
-		count: 0,
+		seconds: 0,
+		minutes: 0,
 		start: 1,
 	},
 	reducers: {
 		add: state => {
-			state.count++
+			state.seconds++
 		},
 		minus: state => {
-			state.count--
+			state.seconds--
 		},
 		addToStart: state => {
 			state.start++
@@ -57,11 +56,16 @@ const stopwatchSlice = createSlice({
 			state.start--
 		},
 		incrementByCount: state => {
-			state.count += state.start
+			state.seconds += state.start
+		},
+		addMinutes: state => {
+			state.minutes++
+			state.seconds = 0
 		},
 		zero: state => {
-			state.count = 0
+			state.seconds = 0
 			state.start = 1
+			state.minutes = 0
 		},
 	},
 })
@@ -72,6 +76,6 @@ const counterReducer = combineReducers({
 	stopwatch: stopwatchSlice.reducer,
 })
 export default counterReducer
-export const { add, minus, addToStart, minusToStart, incrementByCount, zero } = stopwatchSlice.actions
+export const { add, minus, addToStart, minusToStart, incrementByCount, zero, addMinutes, addMiliseconds } = stopwatchSlice.actions
 export const { increment, decrement, reset } = counterSlice.actions
 export const { addPage, decPage, firstPage } = pageSlice.actions

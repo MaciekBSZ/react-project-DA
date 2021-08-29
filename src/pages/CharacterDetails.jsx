@@ -4,6 +4,37 @@ import ErrorPage from './ErrorPage'
 import useFetch from '../components/useFetch'
 import TypeWriterEffect from 'react-typewriter-effect'
 import { Button } from '@material-ui/core'
+import CharacterDetailsBG from '../img/CharacterDetailsBG.jpg'
+import styled from 'styled-components'
+const Container = styled.div`
+	position: relative;
+	top: 15px;
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${CharacterDetailsBG});
+	background-size: cover;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 7px 8px 10px grey;
+`
+const CustomLink = styled(Link)`
+	& {
+		position: absolute;
+		top: 5%;
+		left: 2%;
+		text-decoration: none;
+		& Button {
+			color: wheat;
+			transition: background-color 0.5s, color 0.5s;
+			&:hover {
+				background-color: wheat;
+				color: black;
+			}
+		}
+	}
+`
 const CharacterDetails = () => {
 	const { id, name } = useParams()
 	const { data, isPending, error } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
@@ -11,18 +42,18 @@ const CharacterDetails = () => {
 	return (
 		<>
 			{data && (
-				<>
-					<Link to={`/charlist/`}>
+				<Container>
+					<CustomLink to={`/charlist/`}>
 						<Button>Powrót do listy postaci</Button>
-					</Link>
+					</CustomLink>
 					<TypeWriterEffect
 						textStyle={{
-							color: '#3F3D56',
+							color: 'wheat',
 							fontWeight: 500,
 							fontSize: '1.5em',
 						}}
 						startDelay={2000}
-						cursorColor='#3F3D56'
+						cursorColor='wheat'
 						multiText={[
 							`Imie: ${name}`,
 							`Pochodzenie: ${data.origin.name}`,
@@ -34,7 +65,7 @@ const CharacterDetails = () => {
 						multiTextDelay={2000}
 						typeSpeed={50}
 					/>
-				</>
+				</Container>
 			)}
 			{isPending && <Loader />}
 			{error && <ErrorPage />}

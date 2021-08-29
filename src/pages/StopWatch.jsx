@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { add, minus, addToStart, minusToStart, incrementByCount, zero } from '../redux/toolkit/reducer'
+import { add, minus, addToStart, minusToStart, incrementByCount, zero, addMinutes } from '../redux/toolkit/reducer'
 import { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Typography } from '@material-ui/core'
 import StopwatchBG from '../img/StopwatchBG.jpg'
@@ -24,9 +24,13 @@ const Text = styled(Typography)`
 		color: wheat;
 	}
 `
+const StopwatchDisplay = styled.div`
+	display: flex;
+`
 
 const StopWatch = () => {
-	const count = useSelector(state => state.counters.stopwatch.count)
+	const seconds = useSelector(state => state.counters.stopwatch.seconds)
+	const minutes = useSelector(state => state.counters.stopwatch.minutes)
 	const startCount = useSelector(state => state.counters.stopwatch.start)
 	const [timeOn, setTimeOn] = useState(false)
 	const dispatch = useDispatch()
@@ -35,24 +39,32 @@ const StopWatch = () => {
 		if (timeOn) {
 			interval = setInterval(() => {
 				dispatch(incrementByCount())
+				if (seconds === 59 || seconds > 59) {
+					dispatch(addMinutes())
+				}
 			}, 1000)
 		} else {
 			clearInterval(interval)
 		}
 		return () => clearInterval(interval)
-	}, [timeOn, startCount, dispatch])
+	}, [timeOn, startCount, dispatch, seconds])
 
 	return (
 		<Container>
-			<Text>Zwiększ licznik o: {startCount}</Text>
-			<Text>Stoper: {count}</Text>
+			<Text>Zwiększ licznik o {startCount} sekund</Text>
+			<StopwatchDisplay>
+				<Text> {minutes >= 10 ? minutes : `0${minutes}`}: </Text>
+				<Text> {seconds >= 10 ? seconds : `0${seconds}`} </Text>
+			</StopwatchDisplay>
+			<Button variant='contained' onClick={() => setTimeOn(timeOn => !timeOn)}>
+				{!timeOn ? 'Start' : 'Stop'}
+			</Button>
 			<ButtonGroup variant='contained'>
-				<Button onClick={() => dispatch(minus())}>Odejmij 1</Button>
+				<Button onClick={() => dispatch(minus())}>Odejmij sekunde</Button>
 				<Button onClick={() => dispatch(zero())}>Resetuj</Button>
-				<Button onClick={() => dispatch(add())}>Dodaj 1</Button>
-				<Button onClick={() => dispatch(addToStart())}>Dodaj do licznika {startCount}</Button>
-				<Button onClick={() => dispatch(minusToStart())}>Odejmij do licznika </Button>
-				<Button onClick={() => setTimeOn(timeOn => !timeOn)}>{!timeOn ? 'Start' : 'Stop'}</Button>
+				<Button onClick={() => dispatch(add())}>Dodaj sekunde</Button>
+				<Button onClick={() => dispatch(addToStart())}>Zwiększ licznik o {startCount} sekund</Button>
+				<Button onClick={() => dispatch(minusToStart())}>Odejmij od licznika </Button>
 			</ButtonGroup>
 		</Container>
 	)

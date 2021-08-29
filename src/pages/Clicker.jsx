@@ -30,8 +30,8 @@ const CounterArea = styled(Paper)`
 		color: wheat;
 	}
 `
-const Title = styled.h2`
-	color: ${props => (props.modulo ? 'green' : null)};
+const Green = styled.h2`
+	color: green;
 `
 const Clicker = () => {
 	const count = useSelector(state => state.counters.counter.count)
@@ -39,7 +39,7 @@ const Clicker = () => {
 	return (
 		<Container>
 			<CounterArea>
-				{count % 5 === 0 && count !== 0 ? <Title modulo> {count}</Title> : <h2> {count} </h2>}
+				{count % 5 === 0 && count !== 0 ? <Green> {count}</Green> : <h2> {count} </h2>}
 				<ButtonGroup variant='contained'>
 					<Button onClick={() => dispatch(decrement())}>Odejmij 1</Button>
 					<Button onClick={() => dispatch(reset())}>Resetuj</Button>

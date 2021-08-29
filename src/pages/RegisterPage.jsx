@@ -5,25 +5,48 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import { useState } from 'react'
 import { addUser, correctEmail, correctName, correctLastName, resetCheck, correctPassword } from '../redux/toolkit/register'
+import styled from 'styled-components'
+import RegisterPageBG from '../img/RegisterPageBG.jpg'
+
+const Container = styled.div`
+	position: relative;
+	top: 15px;
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${RegisterPageBG});
+	background-size: cover;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 7px 8px 10px grey;
+`
 
 const RegisterPage = () => {
 	const [value, setValue] = useState({ name: null, lastName: null, email: null, password: null })
 	const [registerError, setRegisterError] = useState({ wrongName: false, wrongLastName: false, wrongEmail: false, wrongPassword: false })
 	const [emailHelperText, setEmailHelperText] = useState(null)
+	const [passwordHelperText, setPasswordHelperText] = useState(null)
 	const dispatch = useDispatch()
 	const emailDomains = useSelector(state => state.registers.registerEmailDomains)
 	const registerCheck = useSelector(state => state.registers.registerCheck)
 	const usersData = useSelector(state => state.registers.registerData)
 	const regex = /^[A-Z-ĘÓĄŁŻŹĆŃ].*/
+	const regexNumer = /[0-9]/
 	const useStyles = makeStyles(theme => ({
 		root: {
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'space-between',
+			height: '200px',
+
 			'& .MuiTextField-root': {
 				margin: theme.spacing(1),
 				width: 200,
+				background: 'wheat',
 			},
 			'& .Mui-error': {
-				background: '#900c3e',
-				color: 'wheat',
+				color: '#900c3e',
 			},
 		},
 	}))
@@ -52,9 +75,7 @@ const RegisterPage = () => {
 				setEmailHelperText('Podaj prawidłowy email')
 			}
 			if (!registerCheck.password) {
-				setRegisterError(prevRegisterError => {
-					return { ...prevRegisterError, wrongPassword: true }
-				})
+				setPasswordHelperText('Hasło powinno składać się z co najmniej 5 znaków')
 			}
 		}
 	}
@@ -105,55 +126,64 @@ const RegisterPage = () => {
 		}
 	}
 	const handlePassword = e => {
-		if (e.target.value.length > 2) {
-			setValue({ ...value, password: e.target.value.toLowerCase() })
-			dispatch(correctPassword(true))
-			setRegisterError(prevRegisterError => {
-				return { ...prevRegisterError, wrongPassword: false }
-			})
+		if (e.target.value.length < 4 && !regexNumer.exec(e.target.value)) {
+			setPasswordHelperText('Hasło za krótkie, oraz nie zawiera cyfr')
+		} else if (e.target.value.length < 4) {
+			setPasswordHelperText('Hasło za krótkie')
+		} else if (!regexNumer.exec(e.target.value)) {
+			setPasswordHelperText('Hasło nie zawiera cyfr')
 		} else {
-			dispatch(correctPassword(false))
+			if (e.target.value.length > 4) {
+				setValue({ ...value, password: e.target.value.toLowerCase() })
+				dispatch(correctPassword(true))
+				setPasswordHelperText(null)
+			} else {
+				dispatch(correctPassword(false))
+			}
 		}
 	}
 	{
 		const classes = useStyles()
 		return (
-			<form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete='off'>
-				<div>
-					<TextField
-						error={registerError.wrongName && true}
-						helperText={registerError.wrongName && 'Podaj prawidłowe imie'}
-						onChange={e => handleName(e)}
-						required
-						label='Imie'
-						placeholder='Podaj imie'
-						variant='filled'
-						color='nav.primary'
-					/>
-					<TextField
-						error={registerError.wrongLastName && true}
-						helperText={registerError.wrongLastName && 'Podaj prawidłowe nazwisko'}
-						onChange={e => handleLastName(e)}
-						required
-						label='Nazwisko'
-						placeholder='Podaj nazwisko'
-						variant='filled'
-					/>
-					<TextField error={registerError.wrongEmail && true} helperText={emailHelperText} onChange={e => handleEmail(e)} required label='email' placeholder='Podaj email' variant='filled' />
-					<TextField
-						error={registerError.wrongPassword && true}
-						helperText={registerError.wrongPassword && 'Hasło za krótkie'}
-						onChange={e => handlePassword(e)}
-						required
-						id='text'
-						label='Hasło'
-						placeholder='Podaj hasło'
-						type='password'
-						variant='filled'
-					/>
-				</div>
-				<Button type='submit'>Wyślij</Button>
-			</form>
+			<Container>
+				<form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete='off'>
+					<div>
+						<TextField
+							error={registerError.wrongName && true}
+							helperText={registerError.wrongName && 'Podaj prawidłowe imie'}
+							onChange={e => handleName(e)}
+							required
+							label='Imie'
+							placeholder='Podaj imie'
+							variant='filled'
+						/>
+						<TextField
+							error={registerError.wrongLastName && true}
+							helperText={registerError.wrongLastName && 'Podaj prawidłowe nazwisko'}
+							onChange={e => handleLastName(e)}
+							required
+							label='Nazwisko'
+							placeholder='Podaj nazwisko'
+							variant='filled'
+						/>
+						<TextField error={registerError.wrongEmail && true} helperText={emailHelperText} onChange={e => handleEmail(e)} required label='email' placeholder='Podaj email' variant='filled' />
+						<TextField
+							error={passwordHelperText && true}
+							helperText={passwordHelperText}
+							onChange={e => handlePassword(e)}
+							required
+							id='text'
+							label='Hasło'
+							placeholder='Podaj hasło'
+							type='password'
+							variant='filled'
+						/>
+					</div>
+					<Button variant='contained' type='submit'>
+						Zarejestruj się!
+					</Button>
+				</form>
+			</Container>
 		)
 	}
 }
