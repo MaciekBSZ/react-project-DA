@@ -23,7 +23,14 @@ const CharacterDetails = () => {
 						}}
 						startDelay={2000}
 						cursorColor='#3F3D56'
-						multiText={[`Imie postaci: ${name}`, `Pochodzenie postaci: ${data.origin.name}`, `Status postaci: ${data.status}`, `Lokalizacja postaci: ${data.location.name}`]}
+						multiText={[
+							`Imie: ${name}`,
+							`Pochodzenie: ${data.origin.name}`,
+							`Status: ${data.status.toLowerCase()}`,
+							`Lokalizacja: ${data.location.name}`,
+							`Płeć: ${data.gender.toLowerCase()}`,
+							'Koniec transmisji...',
+						]}
 						multiTextDelay={2000}
 						typeSpeed={50}
 					/>
