@@ -1,13 +1,41 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
 import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+import UserPanelBG from '../img/UserPanelBG.jpg'
+import TypeWriterEffect from 'react-typewriter-effect'
+
+const Box = styled.div`
+	position: relative;
+	top: 15px;
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${UserPanelBG});
+	background-size: cover;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 7px 8px 10px grey;
+	z-index: -1;
+`
+
 const UserPanel = () => {
 	const location = useLocation()
 	const { name, lastName } = location.state
 	return (
-		<Typography>
-			Witaj {name} {lastName}!
-		</Typography>
+		<Box>
+			<TypeWriterEffect
+				textStyle={{
+					color: '#fff',
+					fontWeight: 500,
+					fontSize: '1.5em',
+				}}
+				startDelay={2000}
+				cursorColor='#fff'
+				text={`Witaj ${name} ${lastName}!`}
+				typeSpeed={50}
+			/>
+		</Box>
 	)
 }
 

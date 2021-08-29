@@ -3,6 +3,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add, minus, addToStart, minusToStart, incrementByCount, zero } from '../redux/toolkit/reducer'
 import { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Typography } from '@material-ui/core'
+import StopwatchBG from '../img/StopwatchBG.jpg'
+import styled from 'styled-components'
+const Container = styled.div`
+	position: relative;
+	top: 15px;
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${StopwatchBG});
+	background-size: cover;
+	background-repeat: no-repeat;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 7px 8px 10px grey;
+`
+const Text = styled(Typography)`
+	& {
+		font-size: 30px;
+		color: wheat;
+	}
+`
+
 const StopWatch = () => {
 	const count = useSelector(state => state.counters.stopwatch.count)
 	const startCount = useSelector(state => state.counters.stopwatch.start)
@@ -21,9 +43,9 @@ const StopWatch = () => {
 	}, [timeOn, startCount, dispatch])
 
 	return (
-		<>
-			<Typography>Zwiększ licznik o: {startCount}</Typography>
-			<Typography>Stoper: {count}</Typography>
+		<Container>
+			<Text>Zwiększ licznik o: {startCount}</Text>
+			<Text>Stoper: {count}</Text>
 			<ButtonGroup variant='contained'>
 				<Button onClick={() => dispatch(minus())}>Odejmij 1</Button>
 				<Button onClick={() => dispatch(zero())}>Resetuj</Button>
@@ -32,7 +54,7 @@ const StopWatch = () => {
 				<Button onClick={() => dispatch(minusToStart())}>Odejmij do licznika </Button>
 				<Button onClick={() => setTimeOn(timeOn => !timeOn)}>{!timeOn ? 'Start' : 'Stop'}</Button>
 			</ButtonGroup>
-		</>
+		</Container>
 	)
 }
 

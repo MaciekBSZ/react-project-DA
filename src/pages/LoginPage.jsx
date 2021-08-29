@@ -9,6 +9,7 @@ import { Typography } from '@material-ui/core'
 const LoginPage = () => {
 	const [value, setValue] = useState({ email: null, password: null })
 	const [loginError, setLoginError] = useState(false)
+	const [passwordTip, setPasswordTip] = useState(false)
 	const usersData = useSelector(state => state.registers.registerData)
 	const history = useHistory()
 	const useStyles = makeStyles(theme => ({
@@ -44,6 +45,7 @@ const LoginPage = () => {
 	}
 
 	const handlePasswordLogin = e => {
+		setPasswordTip(true)
 		setValue({ ...value, password: e.target.value.toLowerCase() })
 	}
 	{
@@ -52,8 +54,19 @@ const LoginPage = () => {
 			<form onSubmit={handleSubmitLogin} className={classes.root} noValidate autoComplete='off'>
 				<div>
 					<TextField disabled={usersData.length === 0} onChange={e => handleEmailLogin(e)} required label='email' placeholder='Podaj email' variant='filled' />
-					<TextField disabled={usersData.length === 0} onChange={e => handlePasswordLogin(e)} required id='text' label='Hasło' placeholder='Podaj hasło' type='password' variant='filled' />
+					<TextField
+						disabled={usersData.length === 0}
+						onChange={e => handlePasswordLogin(e)}
+						required
+						id='text'
+						label='Hasło'
+						placeholder='Podaj hasło'
+						type='password'
+						variant='filled'
+						helperText={passwordTip && 'Wielkość liter nie ma znaczenia'}
+					/>
 				</div>
+
 				{loginError && <Typography>Błędny login lub hasło!</Typography>}
 				<Button disabled={usersData.length === 0} type='submit'>
 					Zaloguj się!

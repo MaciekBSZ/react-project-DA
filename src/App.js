@@ -6,17 +6,6 @@ import './App.css'
 import routing from './data/routing'
 const App = () => {
 	const theme = createTheme({
-		transitions: {
-			duration: {
-				shortest: 150,
-				shorter: 200,
-				short: 250,
-				standard: 300,
-				complex: 1375,
-				enteringScreen: 225,
-				leavingScreen: 195,
-			},
-		},
 		palette: {
 			primary: {
 				main: '#fefefe',
