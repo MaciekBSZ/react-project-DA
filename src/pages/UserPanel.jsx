@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import UserPanelBG from '../img/UserPanelBG.jpg'
 import TypeWriterEffect from 'react-typewriter-effect'
+import UserPanelBG from '../img/UserPanelBG.jpg'
 
 const Box = styled.div`
 	position: relative;

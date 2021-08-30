@@ -1,11 +1,12 @@
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Loader from '../components/Loader'
-import ErrorPage from './ErrorPage'
-import useFetch from '../components/useFetch'
-import TypeWriterEffect from 'react-typewriter-effect'
 import { Button } from '@material-ui/core'
-import CharacterDetailsBG from '../img/CharacterDetailsBG.jpg'
+import TypeWriterEffect from 'react-typewriter-effect'
 import styled from 'styled-components'
+import ErrorPage from './ErrorPage'
+import Loader from '../components/Loader'
+import CharacterDetailsBG from '../img/CharacterDetailsBG.jpg'
+import useFetch from '../components/useFetch'
 const Container = styled.div`
 	position: relative;
 	top: 15px;

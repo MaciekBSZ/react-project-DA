@@ -1,6 +1,6 @@
+import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import styled from 'styled-components'
-import React from 'react'
 import ErrorPageImg from '../img/ErrorPageImg.png'
 const Photo = styled.div`
 	width: 300px;

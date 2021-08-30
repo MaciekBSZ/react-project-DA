@@ -1,9 +1,7 @@
-import React from 'react'
-import TextField from '@material-ui/core/TextField'
+import React, { useState } from 'react'
+import { Button, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
-import Button from '@material-ui/core/Button'
-import { useState } from 'react'
 import { addUser, correctEmail, correctName, correctLastName, resetCheck, correctPassword } from '../redux/toolkit/register'
 import styled from 'styled-components'
 import RegisterPageBG from '../img/RegisterPageBG.jpg'
@@ -127,19 +125,18 @@ const RegisterPage = () => {
 	}
 	const handlePassword = e => {
 		if (e.target.value.length < 4 && !regexNumer.exec(e.target.value)) {
-			setPasswordHelperText('Hasło za krótkie, oraz nie zawiera cyfr')
+			setPasswordHelperText('Hasło powinno zawierać co najmniej 4 znaki w tym cyfre')
+			dispatch(correctPassword(false))
 		} else if (e.target.value.length < 4) {
 			setPasswordHelperText('Hasło za krótkie')
+			dispatch(correctPassword(false))
 		} else if (!regexNumer.exec(e.target.value)) {
 			setPasswordHelperText('Hasło nie zawiera cyfr')
+			dispatch(correctPassword(false))
 		} else {
-			if (e.target.value.length > 4) {
-				setValue({ ...value, password: e.target.value.toLowerCase() })
-				dispatch(correctPassword(true))
-				setPasswordHelperText(null)
-			} else {
-				dispatch(correctPassword(false))
-			}
+			setValue({ ...value, password: e.target.value.toLowerCase() })
+			dispatch(correctPassword(true))
+			setPasswordHelperText(null)
 		}
 	}
 	{

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPage, decPage, firstPage } from '../redux/toolkit/reducer'
 import styled from 'styled-components'

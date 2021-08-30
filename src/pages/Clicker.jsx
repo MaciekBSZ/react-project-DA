@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment, reset } from '../redux/toolkit/reducer'
+import { Button, ButtonGroup, Paper } from '@material-ui/core'
 import styled from 'styled-components'
 import ClickerBG from '../img/ClickerBG.jpg'
-import { Button, ButtonGroup, Paper } from '@material-ui/core'
 
 const Container = styled.div`
 	position: relative;

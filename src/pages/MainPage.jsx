@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, TextField, Typography, Button, makeStyles } from '@material-ui/core'
-import MainPageCards from '../components/MainPageCards'
 import styled from 'styled-components'
+import MainPageCards from '../components/MainPageCards'
 
 const MainPageText = styled(Typography)`
 	& {

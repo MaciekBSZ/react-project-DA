@@ -1,7 +1,8 @@
+import React from 'react'
 import { Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import CharCard from './CharCard'
 import { makeStyles } from '@material-ui/styles'
+import CharCard from './CharCard'
 const useStyles = makeStyles({
 	link: {
 		textDecoration: 'none',

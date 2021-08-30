@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Paper, Typography } from '@material-ui/core'
+import styled from 'styled-components'
 import img from '../img/AboutMePageImg.jpg'
 import bgImg from '../img/AboutMePageBG.jpg'
 
